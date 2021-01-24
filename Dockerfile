@@ -29,8 +29,10 @@ ADD requirements.txt .
 RUN virtualenv scoutsuite -p python3
 RUN pip3 install --user awscliv2
 RUN bash -c 'source scoutsuite/bin/activate && \
+python3 -m pip install --upgrade setuptools && \
+pip3 install grpcio==1.18.0 && \
 pip3 install awscliv2 && \
-pip3 install -r requirements.txt --upgrade && \
+pip3 install -r requirements.txt && \
 pip3 install scoutsuite==5.10.2'
 
 RUN echo "echo -e \"Welcome to ScoutSuite!\nTo run ScoutSuite, just type scout -h to see the help documentation. Have fun!\"" >> /home/scoutsuite/.bashrc
